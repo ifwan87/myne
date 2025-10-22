@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYNE - TM Global Selfcare Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        /* === MAIN CONTAINER SECTION === */
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* === LEFT VIDEO SECTION === */
+        .left-section {
+            flex: 1;
+            position: relative;
+            background-image: url('blackstar.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 2;
+            opacity: 0.8;
+        }
+
+        .blackstar-overlay {
+            /* Remove this overlay since blackstar is now the background */
+            display: none;
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+        }
+
+        /* === PROMOTIONAL CARDS SECTION === */
+        .promo-cards {
+            display: none; /* Remove the orange cards */
+        }
+
+        .promo-card {
+            display: none; /* Remove the orange cards */
+        }
+
+        .promo-card.activation {
+            display: none; /* Remove the orange cards */
+        }
+
+        .promo-card h3 {
+            display: none; /* Remove the orange cards */
+        }
+
+        .promo-card p {
+            display: none; /* Remove the orange cards */
+        }
+
+        /* === IMPACTFUL MESSAGING SECTION === */
+        .impactful-messaging {
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .messaging-header {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .messaging-main {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 42px;
+            line-height: 1.1;
+            color: #ffffff;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .messaging-highlight {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 42px;
+            line-height: 1.1;
+            color: #ff5e00;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .messaging-description {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.4;
+            color: #ffffff;
+            opacity: 0.85;
+            margin-bottom: 15px;
+        }
+
+        .messaging-cta {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #ff5e00;
+            margin-top: 10px;
+        }
+
+        /* === TERMS AND CONDITIONS SECTION === */
+        .terms-section {
+            margin-top: 20px;
+        }
+
+        .terms-text {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .description-text {
+            font-size: 16px;
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        /* === CHEVRON MYNE LOGO SECTION === */
+        .chevron-logo-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 4;
+        }
+
+        .chevron-logo {
+            width: 120px;
+            height: auto;
+        }
+
+        /* === RIGHT LOGIN SECTION === */
+        .right-section {
+            flex: 1;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 40px;
+            position: relative;
+        }
+
+        /* === TMG LOGO SECTION === */
+        .tmg-logo-container {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+        }
+
+        .tmg-logo {
+            width: 100px;
+            height: auto;
+        }
+
+        /* === LOGIN FORM SECTION === */
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .welcome-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #14018B;
+            margin-bottom: 10px;
+        }
+
+        .myne-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #ff5e00;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+        }
+
+        .portal-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #14018B;
+            margin-bottom: 40px;
+        }
+
+        /* === FORM INPUT SECTION === */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+            color: #14018B;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #14018B;
+            background-color: #ffffff;
+        }
+
+        .form-input::placeholder {
+            color: #999;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* === FORGOT PASSWORD SECTION === */
+        .forgot-password {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .forgot-password a {
+            color: #14018B;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+        }
+
+        .forgot-password a:hover {
+            color: #0d0166;
+        }
+
+        /* === LOGIN BUTTON SECTION === */
+        .login-btn-container {
+            margin-bottom: 30px;
+        }
+
+        .login-btn {
+            background-color: #ff5e00;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover {
+            background-color: #e54d00;
+        }
+
+        .login-btn::after {
+            content: '→';
+            margin-left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* === SIGN UP SECTION === */
+        .signup-link {
+            margin-bottom: 40px;
+        }
+
+        .signup-link a {
+            color: #14018B;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* === FOOTER LINKS SECTION === */
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #14018B;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* === FOOTER ICONS SECTION === */
+        .footer-icons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-icon {
+            width: 35px;
+            height: 35px;
+            background-color: #14018B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .footer-icon:hover {
+            background-color: #0d0166;
+        }
+
+        /* === COPYRIGHT SECTION === */
+        .copyright {
+            font-family: 'Roboto', sans-serif;
+            font-size: 11px;
+            color: #14018B;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* === RESPONSIVE DESIGN SECTION === */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                min-height: 40vh;
+                padding: 20px;
+            }
+            
+            .promo-cards {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .right-section {
+                padding: 30px 20px;
+            }
+            
+            .myne-text {
+                font-size: 36px;
+            }
+            
+            .welcome-text {
+                font-size: 24px;
+            }
+            
+            .chevron-logo {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- === MAIN CONTAINER SECTION === -->
+    <div class="main-container">
+        
+        <!-- === LEFT VIDEO SECTION === -->
+        <div class="left-section">
+            <video class="video-background" autoplay muted loop>
+                <source src="myne_login.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <div class="left-content">
+                <!-- === IMPACTFUL MESSAGING SECTION === -->
+                <div class="impactful-messaging">
+                    <div class="messaging-header">Network Solutions</div>
+                    <div class="messaging-main">Explore Our</div>
+                    <div class="messaging-main">Global Ethernet</div>
+                    <div class="messaging-highlight">On-Demand Services</div>
+                    <div class="messaging-description">MYNE is a cloud-based, digital infrastructure marketplace that makes it easy for businesses to subscribe to network connectivity services anytime, anywhere.</div>
+                    <div class="messaging-cta">FREE ACTIVATION - SIGN UP BEFORE 15 NOV 2025</div>
+                </div>
+                
+                <!-- === TERMS AND CONDITIONS SECTION === -->
+                <div class="terms-section">
+                    <p class="terms-text"><strong>T&C Apply</strong></p>
+                    <p class="description-text">Access connectivity services and manage your account securely.</p>
+                </div>
+            </div>
+            
+            <!-- === CHEVRON MYNE LOGO SECTION === -->
+            <div class="chevron-logo-container">
+                <img src="chevron_myne.png" alt="Chevron MYNE Logo" class="chevron-logo">
+            </div>
+        </div>
+        
+        <!-- === RIGHT LOGIN SECTION === -->
+        <div class="right-section">
+            <!-- === TMG LOGO SECTION === -->
+            <div class="tmg-logo-container">
+                <img src="tmg_logo.png" alt="TM Global Logo" class="tmg-logo">
+            </div>
+            
+            <!-- === LOGIN FORM SECTION === -->
+            <div class="login-container">
+                <h1 class="welcome-text">Welcome to TM Global Selfcare Portal</h1>
+                <h2 class="myne-text">MYNE</h2>
+                <p class="portal-text">TM Global Self-service Portal</p>
+                
+                <!-- === FORM INPUT SECTION === -->
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-input" placeholder="Password" required>
+                    </div>
+                    
+                    <!-- === FORGOT PASSWORD SECTION === -->
+                    <div class="forgot-password">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    
+                    <!-- === LOGIN BUTTON SECTION === -->
+                    <div class="login-btn-container">
+                        <button type="submit" class="login-btn">LOGIN</button>
+                    </div>
+                </form>
+                
+                <!-- === SIGN UP SECTION === -->
+                <div class="signup-link">
+                    <a href="#">New to TM Global? Sign up here</a>
+                </div>
+                
+                <!-- === FOOTER LINKS SECTION === -->
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Help & Support</a>
+                </div>
+                
+                <!-- === FOOTER ICONS SECTION === -->
+                <div class="footer-icons">
+                    <a href="#" class="footer-icon">📖</a>
+                    <a href="#" class="footer-icon">📧</a>
+                    <a href="#" class="footer-icon">👤</a>
+                </div>
+                
+                <!-- === COPYRIGHT SECTION === -->
+                <div class="copyright">
+                    Copyright © TM TECHNOLOGY SERVICES SDN. BHD. (Company No. 200201003738 (571369-H)). All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
